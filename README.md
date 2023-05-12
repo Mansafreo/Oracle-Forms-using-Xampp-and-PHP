@@ -10,7 +10,7 @@
 - Unzip the files
 - Install Xampp
 - Copy the instantClient folder to Xampp or any other place in your hard drive
-- Set a new path system variable which shoult point to the instant client
+- Set a new path system variable which should point to the instant client
 - Copy the files inside the 'php_oci8-2.2.0-7.3-ts-vc15-x86' folder to the php/ext/ folder inside Xampp
 - Clone this respository using `git clone` or simply download these files
 - Put the contents of this repo inside the 'htdocs' folder in Xampp
