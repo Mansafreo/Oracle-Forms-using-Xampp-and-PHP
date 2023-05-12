@@ -1,0 +1,265 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+nav{
+    height: 100vh;
+    width: 25vw;
+    background-color: #554d4d;
+}
+/* style the manuTitle span */
+#menuTitle{
+    color: rgb(0, 0, 0);
+    font-size: 2pc;
+    font-weight: bold;
+    text-align: center;
+    display: block;
+}
+/*
+style the table buttons to be the same size
+*/
+#tables button{
+    width: 90%;
+    height: 50px;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: 5%;
+    font-style: normal;
+    font-family: monospace;
+    background-color: beige;
+    cursor: pointer;
+}
+.functional_btn{
+    width: 100%;
+    display: block;
+    border: 1px solid black;
+    text-align: left;
+    font-size: 1.5pc;
+    padding: 5px;
+    background-color: antiquewhite;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.loader {
+    display: flex;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+.loading {
+    position: relative;
+    width: 100px;
+    height: 50px;
+  }
+  
+  .loading .bubble {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    border-radius: 50%;
+    animation: wave 1s ease-in-out infinite;
+    background-color: black;
+    border: 10px solid black;
+    margin-left: 20px;
+    margin-right:20px ;
+  }
+  
+  .loading .bubble:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+  }
+  
+  .loading .bubble:nth-child(2) {
+    left: 30%;
+    animation-delay: 0.2s;
+  }
+  
+  .loading .bubble:nth-child(3) {
+    left: 50%;
+    animation-delay: 0.4s;
+  }
+  
+  .loading .bubble:nth-child(4) {
+    left: 70%;
+    animation-delay: 0.6s;
+  }
+  
+  .loading .bubble:nth-child(5) {
+    left: 90%;
+    animation-delay: 0.8s;
+  }
+  
+  @keyframes wave {
+    0% {
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(0.5);
+    }
+  }
+#data{
+    position: absolute;
+    right: 0;
+    padding: 0;
+    background-position: center;
+    width: 75vw;
+    top: 0;
+    height: 100vh;
+    overflow: scroll;
+}
+#companyName{
+    text-align: center;
+    font-size: 2pc;
+    font-weight: bold;
+    margin-top: 10px;
+}
+#companyName span{
+    color: rgb(0, 0, 0);
+}
+#companyName img{
+    width: 500px;
+    height: 500px;
+    margin-left: 10px;
+}
+  
+#data table{
+    height: 100vh;
+    width: 95%;
+    margin-left: 50px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+  
+  #my-table {
+    border-collapse: collapse;
+    width: 95%;
+    height: 100vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    display:none;
+  }
+  
+  #my-table th,
+  #my-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  #my-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  #my-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  #my-table tr:hover {
+    background-color: #ddd;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    /* Make the table responsive */
+    #my-table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    #my-table td,
+    #my-table th {
+      border: none;
+      position: relative;
+      padding-left: 50%;
+      white-space: nowrap;
+      font-size: 14px;
+      text-align: left;
+    }
+    #my-table td:before,
+    #my-table th:before {
+      position: absolute;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      content: attr(data-title);
+      font-weight: bold;
+      text-align: left;
+    }
+    #my-table td:last-child:before,
+    #my-table th:last-child:before {
+      width: 100%;
+      padding-right: 0;
+    }
+}
+  
+/* Style for the form */
+form {
+    margin: 0 auto;
+    width: 80%;
+    padding: 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Style for the label */
+  label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  /* Style for the input field */
+  input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Style for the submit button */
+  input[type="button"] {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  /* Style for the submit button on hover */
+input[type="button"]:hover {
+    background-color: #3e8e41;
+}
+/* to style form title */
+#data h2{
+    text-align: center;
+    font-size: 2pc;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: black;
+}
+/* style the toggle table button */
+#toggleTable{
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 1.5pc;
+    padding: 5px;
+    background-color: antiquewhite;
+    margin-top: 10px;
+    cursor: pointer;
+}
