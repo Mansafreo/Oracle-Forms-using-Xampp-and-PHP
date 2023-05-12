@@ -20,5 +20,5 @@
 When in doubt, follow this <a href='https://youtu.be/tXoszm_v5NA' >tutorial</a> after downloading the necessary files
 
 ## Details
-  Once you are done with installation, just enter your database's login credentials
-  All the forms are auto-generated
+ - Once you are done with installation, just enter your database's login credentials
+  - All the forms are auto-generated
