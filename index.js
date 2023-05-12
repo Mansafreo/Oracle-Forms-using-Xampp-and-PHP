@@ -286,3 +286,30 @@ function updateRecord()
         }
     });
 }
+
+//Login function
+function login(){
+    $.post("login.php",{
+        databasename: $("#databasename").val(),
+        servicename: $("#serviceName").val(),
+        username: $("#username").val(),
+        password: $("#password").val()
+    },function(data){
+        //if the login is successful, the login form will be hidden and the menu will be shown
+        if(data == true){
+            $("#loginForm").hide();
+            $("#menuTitle").show();
+            $("#loadTables").show();
+            $("#loadReports").show();
+        }
+        //if the login is unsuccessful, the login form will be shown again
+        else{
+            $("#loginForm").show();
+            $("#menuTitle").hide();
+            $("#loadTables").hide();
+            $("#loadReports").hide();
+            alert("Login failed");
+            console.log(data);
+        }
+    });
+}

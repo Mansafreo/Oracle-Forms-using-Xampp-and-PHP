@@ -1,10 +1,10 @@
 <?php
+session_start();
 // Create connection to Oracle
-$username = "admin";
-$databaseName = "freighto4.cv8tg5uhwfih.eu-west-2.rds.amazonaws.com/orcl";
-$password = "freighto";
+$username = $_SESSION["username"];
+$databaseName = $_SESSION["databasename"]."/".$_SESSION["servicename"];
+$password = $_SESSION["password"];
 $conn = oci_connect($username, $password, $databaseName);
-
 if (!$conn) {
     $m = oci_error();
     echo $m['message'], "\n";

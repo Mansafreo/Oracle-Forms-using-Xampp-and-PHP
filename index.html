@@ -11,6 +11,24 @@
     <script src="index.js" defer></script>
 </head>
 <body>
+    <div id="loginForm">
+    <h1>Oracle Database Login</h1>
+	<form method="post" action="login.php" id="loginData">
+		<label for="databasename">Databasename:</label>
+		<input type="text" name="databasename" id="databasename" placeholder='mydatabase.mywebiste.server.something' required>
+
+		<label for="service_type">Service Type:</label>
+		<input type="text" name="serviceName" id="serviceName" placeholder='orcl' required>
+
+		<label for="username">Username:</label>
+		<input type="text" name="username" id="username" placeholder="admin" required>
+
+		<label for="password">Password:</label>
+		<input type="password" name="password" id="password" placeholder='*********' required>
+
+		<input type="button" onclick="login()" value="Login">
+	</form>
+    </div>
     <nav>
         <span id="menuTitle">MENU</span>
         <!--Button which will load the table once clicked-->
