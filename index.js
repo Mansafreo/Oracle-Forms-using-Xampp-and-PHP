@@ -1,3 +1,20 @@
+window.onload = function(){
+    checkLogin();
+}
+//To check whether user is logged in or not
+function checkLogin(){
+    $.ajax({
+        url: "checkLogin.php",
+        type: "POST",
+        success: function(response){
+            if(response == true){
+                //To close the login form
+                document.getElementById("loginForm").style.display = "none";
+            }
+        }
+    });
+}
+
 let loading=`
 <div class="loading">
                 <div class="bubble"></div>
@@ -105,7 +122,122 @@ function loadForm(table){
 
 function loadReports()
 {
+//To get all the views from the database
+    //To create a loading div inside the data div
+    document.getElementById("reports").innerHTML = loading;
+    //To get the views from the database
+    $.ajax({
+        url: "getViews.php",
+        type: "POST",
+        success: function(response){
+            //Clear the loading div
+            document.getElementById("reports").innerHTML = "";
+        //put the views as buttons in the reports div
+            
+            let data = JSON.parse(response);
+            for(var i = 0; i < data.length; i++){
+                var button = document.createElement("button");
+                button.innerHTML = data[i];
+                button.setAttribute("onclick", "loadReport(this.innerHTML)");
+                 button.setAttribute("id", data[i]);
+                document.getElementById("reports").appendChild(button);
+            }
+        }
+    });
 
+}
+//Function to load the report
+function loadReport(view){
+    //To create a loading div inside the data div
+    document.getElementById("data").innerHTML = loading;
+    $.ajax({
+        url: "getViewData.php",
+        type: "POST",
+        data: {viewName: view},
+        success: function(response){
+            console.log(response);
+            //Clear the loading div
+            document.getElementById("data").innerHTML = "";
+            //JSON.parse the response
+            let data = JSON.parse(response);
+            //To dynamically create the report from the view data
+            let formLabel = document.createElement("h2");
+            formLabel.innerHTML = view+" Report";
+            document.getElementById("data").appendChild(formLabel);
+            //
+            // Assuming that the PHP script returns a JSON object
+            // containing the fields, data, and probableFields
+            var fields = data.fields;
+            var viewData = data.data;
+            var probableFields = data.probableFields;
+        
+            // Find the HTML element where the report should be displayed
+            let dataDiv = document.getElementById('data');
+            //Create a div to hold the report
+            let reportDiv = document.createElement("div");
+            reportDiv.setAttribute("id", "report-container");
+            dataDiv.appendChild(reportDiv);
+            var reportContainer = reportDiv;
+            // Create a new HTML table element
+            var table = document.createElement('table');
+            table.className = 'report-table';
+            // Create the table header row
+            var headerRow = document.createElement('tr');
+            for (var i = 0; i < fields.length; i++) {
+            var headerCell = document.createElement('th');
+            headerCell.innerText = fields[i].name;
+            headerRow.appendChild(headerCell);
+            }
+            table.appendChild(headerRow);
+            // Create the table data rows
+            var totalRow = document.createElement('tr');
+            var totalCounts = {}; // Object to store total counts for each probableField
+            for (var i = 0; i < viewData.length; i++) {
+            var dataRow = document.createElement('tr');
+            for (var j = 0; j < fields.length; j++) {
+                var dataCell = document.createElement('td');
+                dataCell.innerText = viewData[i][fields[j].name];
+                dataRow.appendChild(dataCell);
+                // Check if the current field is a probableField
+                if (probableFields.includes(fields[j].name)) {
+                var value = viewData[i][fields[j].name];
+                if (!isNaN(parseFloat(value))) {
+                    // Add the value to the corresponding total count
+                    if (totalCounts.hasOwnProperty(fields[j].name)) {
+                        totalCounts[fields[j].name].count++;
+                        totalCounts[fields[j].name].total += parseFloat(value);
+                    } else {
+                        totalCounts[fields[j].name] = {count: 1, total: parseFloat(value)};
+                    }
+                    // Round off the value to 2 decimal places if it is not the first field in the table
+                    if (j > 0) {
+                        dataCell.innerText = parseFloat(value).toFixed(2);
+                    } else {
+                        dataCell.innerText = value;
+                    }
+                }
+                }
+            }
+            table.appendChild(dataRow);
+            }
+            // Create the total row for probableFields
+            for (var i = 0; i < fields.length; i++) {
+            var fieldName = fields[i].name;
+            if (probableFields.includes(fieldName)) {
+                var totalCell = document.createElement('td');
+                totalCell.innerText = 'Total: ' + totalCounts[fieldName].total.toFixed(2) + ', Average: ' + (totalCounts[fieldName].total / totalCounts[fieldName].count).toFixed(2);
+                totalRow.appendChild(totalCell);
+            } else {
+                totalRow.appendChild(document.createElement('td'));
+            }
+            }
+            table.appendChild(totalRow);
+        
+            // Add the table to the report container
+            reportContainer.appendChild(table);
+                    //
+                }
+            });
 }
 
 function toggleTable(){
@@ -312,4 +444,14 @@ function login(){
             console.log(data);
         }
     });
+}
+
+function logout()
+{
+    //To send the logout request to the server
+    $.post("logout.php",function(data){
+        //To reload the page
+        location.reload();  
+    }
+    );
 }

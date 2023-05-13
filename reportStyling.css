@@ -1,0 +1,62 @@
+/* Set the page size and margins */
+@media print {
+    @page {
+      size: 8.5in 11in;
+      margin: 0.5in;
+    }
+  }
+  
+  /* Style the report header */
+  .report-header {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1em;
+  }
+  
+  /* Style the table headers */
+  .report-table th {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    text-align: center;
+  }
+  
+  /* Style the table data cells */
+  .report-table td {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    text-align: center;
+  }
+  
+  /* Style the table footer */
+  .report-table tfoot td {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 0.5em;
+    text-align: center;
+  }
+  
+  /* Style the totals section */
+  .report-totals {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 1em;
+    text-align: right;
+  }
+  
+  /* Add hover effect to table rows */
+  .report-table tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+  
